@@ -165,7 +165,6 @@ exports.config = {
       {
         outputDir: "./report",
         outputFileFormat: function (options) {
-          console.log(options);
           // optional
           return `results-${options.cid}.${options.capabilities.browserName}.xml`;
         },
