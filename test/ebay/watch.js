@@ -1,17 +1,25 @@
 import { expect as chaiExpect } from 'chai'
+import { watchBanner, watchesCatgories } from '../../resources/watch';
+import WatchPage from  '../../suites/ebay/watch.page'
+import { waitAndClick } from '../../utils/waitForText';
 describe('Watches page', () => {
-    it('Should search watch', () => {
-        browser.url('https://www.ebay.com/b/Wristwatches/31387/bn_2408451')
-        const banner = $('[data-marko-key="@_wbind s0-15-6-0-1[1]-0"]')
-        expect(banner).toBeDisplayed()
+    before(() => {
+        WatchPage.open()
+        WatchPage.fashionLink.moveTo()
+        waitAndClick(WatchPage.watchesLink, 10000)
+    })
+    it('Should search watches', () => {
+        
+        expect(WatchPage.banner).toBeDisplayed()
+    })
+
+    it('Should verify category list', () => {
+        chaiExpect(WatchPage.getWatchCatehoyList()).to.deep.equal(watchesCatgories)
     })
 
     it('should show the banner title', () => {
-        const banner = $('[data-marko-key="@_wbind s0-15-6-0-1[1]-0"]')
-        //Time for a New Wristwatch?
-        const url = browser.getUrl()
-        console.log("URL", url);
-        chaiExpect(url).to.include('Wristwatches')
-        expect(banner).toHaveTextContaining('Time for a New Wristwatch?')
+        // const url = browser.getUrl()
+        // chaiExpect(url).to.include('Wristwatches')
+        expect(WatchPage.banner).toHaveTextContaining(watchBanner)
     })
 });
