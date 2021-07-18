@@ -121,14 +121,15 @@ exports.config = {
   // Services take over a specific job you don't want to take care of. They enhance
   // your test setup with almost no effort. Unlike plugins, they don't add new
   // commands. Instead, they hook themselves up into the test process.
-  services: [
-    [
-      "browserstack",
-      {
-        browserstackLocal: true,
-      },
-    ],
-  ],
+  services: ["selenium-standalone"],
+  //   services: [
+  //     [
+  //       "browserstack",
+  //       {
+  //         browserstackLocal: true,
+  //       },
+  //     ],
+  //   ],
 
   // Framework you want to run your specs with.
   // The following are supported: Mocha, Jasmine, and Cucumber
@@ -164,8 +165,9 @@ exports.config = {
       {
         outputDir: "./report",
         outputFileFormat: function (options) {
+          console.log(options);
           // optional
-          return `results-${options.cid}.${options.capabilities}.xml`;
+          return `results-${options.cid}.${options.capabilities.browserName}.xml`;
         },
       },
     ],
