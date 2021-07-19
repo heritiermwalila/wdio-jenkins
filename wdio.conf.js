@@ -1,7 +1,7 @@
 exports.config = {
   //Browserstack config
-  user: "marketing136",
-  key: "rxWy2eyyAr8U4P6ANoG1",
+  user: process.env.BROWSERSTACK_USERNAME,
+  key: process.env.BROWSERSTACK_ACCESS_KEY,
   //
   // ====================
   // Runner Configuration
